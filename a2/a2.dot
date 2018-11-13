@@ -1,0 +1,32 @@
+digraph{
+ranksep = 0.35;
+node [shape=plaintext];
+1 [texlbl="\underline{ {\LARGE \color{green} $\neg (p)$}}"];
+2 [texlbl="\underline{ {\LARGE \color{green} $\neg (q)$}}"];
+3 [texlbl="\underline{ {\LARGE \color{green} $p$}}"];
+4 [texlbl="\underline{ {\LARGE \color{green} $\neg (p)$}}"];
+5 [texlbl="\underline{ {\LARGE \color{green} $\neg (q)$}}"];
+6 [texlbl="\underline{ {\LARGE \color{green} $q$}}"];
+7 [texlbl="\underline{ {\LARGE \color{green} $(p \vee q)$}}"];
+8 [texlbl="\underline{ {\LARGE \color{green} $(\neg (p) \wedge \neg (q))$}}"];
+9 [texlbl="\underline{ {\LARGE \color{green} $((p \vee q) \wedge (\neg (p) \wedge \neg (q)))$}}"];
+10 [texlbl="\underline{ {\LARGE \color{green} $\neg (p)$}}"];
+11 [texlbl="\underline{ {\LARGE \color{green} $\neg (q)$}}"];
+12 [texlbl="\underline{ {\LARGE \color{green} $(\neg (p) \vee \neg (q))$}}"];
+13 [texlbl="\underline{ {\LARGE \color{green} $(((p \vee q) \wedge (\neg (p) \wedge \neg (q))) \vee (\neg (p) \vee \neg (q)))$}}"];
+
+subgraph dir
+{
+13 -> 9;
+13 -> 12;
+9 -> 8;
+8 -> 7;
+7 -> 3;
+7 -> 6;
+3 -> 2;
+6 -> 5;
+12 -> 10;
+12 -> 11;
+}
+}
+

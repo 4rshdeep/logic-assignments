@@ -12,7 +12,7 @@ type tree = Node of (prop list * bool * prop list) * ( tree list )
 
 type value_prop = Value of prop*int;;
 
-type value_tree= ValueNode of (value_prop list * bool * prop list) * (value_tree list)
+type value_tree= ValueNode of (value_prop list * bool * prop list) * (value_tree list);;
 
 (* check if a prop is a literal *)
 let isLiteral lit = match lit with
@@ -191,8 +191,8 @@ let rec addToTabl l = match l with
 *)
 let v = {value=1};;
 
-let add_value n =  let s =  (a.value <- (a.value+1))  in
-                   ( let b = (add map (a.value-1) n) in
+let add_value n =  let () =  (a.value <- (a.value+1))  in
+                   ( let () = (add map (a.value-1) n) in
                                        Value(n, (a.value-1)) )
 ;;
 
@@ -202,6 +202,7 @@ let rec give_value tabl = match tabl with
 
                                                 ValueNode( ((List.map add_value prop_list), b, [sp]), (List.map give_value ts) )
                                                 )  
+        | _ -> raise NOT_BRANCHABLE
 ;;
 
 let getValue n = match n with
@@ -312,7 +313,7 @@ let rec connected_edges t = match t with
                                                     )
                                                 )
 
-                                                  
+                                           | _ -> raise NOT_BRANCHABLE       
 
 ;;
 (* write a file with these *)
@@ -351,14 +352,14 @@ let rec digraph num = if num > 0
 (*x.msg <- (x.msg ^ sub_start);;*)
 let rec subgraph l = match l with
                [] -> ()
-        |   y::xs -> let s  = (( x.msg <- (x.msg ^ (string_of_int (fst y)) ^ " -> " ^ (string_of_int (snd y))  ^ ";\n") )) in
+        |   y::xs -> let ()  = (( x.msg <- (x.msg ^ (string_of_int (fst y)) ^ " -> " ^ (string_of_int (snd y))  ^ ";\n") )) in
                         subgraph xs
 ;;
 
 
 
   
-let file = "example.dot";;
+let file = "a2.dot";;
 
 
 let p = ATOM "p";;
@@ -368,7 +369,8 @@ let r = ATOM "r";;
 
 let rec takeAnd l = match l with
             [x] -> x
-        | x::xs -> AND(x, (takeAnd xs));;
+        | x::xs -> AND(x, (takeAnd xs))
+        | _ -> raise NOT_BRANCHABLE;;
 
 let  z = OR(AND (OR (ATOM "p", ATOM "q"), AND (NOT (ATOM "p"), NOT (ATOM "q"))) , (OR (NOT(ATOM "p"), NOT(ATOM "q"))) );;
 

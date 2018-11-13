@@ -1,0 +1,76 @@
+digraph{
+ranksep = 0.35;
+node [shape=plaintext];
+0 [texlbl="\underline{0. {\LARGE \color{green} $\neg ((p \wedge q)\vee(\neg p \wedge r))\rightarrow((\neg p \vee q) \wedge (p \vee r))$}}"];
+1 [texlbl="\underline{1. {\LARGE \color{green} $((p \wedge q) \vee (\neg p \wedge r)) \wedge (\neg ((\neg p \vee q) \wedge (p \vee r)))$}}"];
+2 [texlbl="\underline{2. {\LARGE \color{green} $(p \wedge q) \vee (\neg p \wedge r))$}}"];
+3 [texlbl="\underline{3. {\LARGE \color{green} $\neg ((\neg p \vee q) \wedge (p \vee r))$}}"];
+4 [texlbl="\underline{4. {\LARGE \color{green} $\neg (\neg p \vee q)$}}"];
+5 [texlbl="\underline{5. {\LARGE \color{green} $\neg (p \vee r)$}}"];
+6 [texlbl="\underline{6. {\LARGE \color{green} $\neg \neg p$}}"];
+7 [texlbl="\underline{7. {\LARGE \color{green} $\neg q$}}"];
+8 [texlbl="\underline{8. {\LARGE \color{green} $p$}}"];
+9 [texlbl="\underline{9. {\LARGE \color{green} $p \wedge q$}}"];
+10 [texlbl="\underline{10. {\LARGE \color{green} $\neg p \wedge r$}}"];
+11 [texlbl="\underline{11. {\LARGE \color{green} $p$}}"];
+12 [texlbl="12. {\LARGE
+$\displaystyle{\frac{\color{green}{q}}
+{\color{red}{\times}}}
+$}"];
+13 [texlbl="13. {\LARGE
+$\displaystyle{\frac{\color{green}{\neg p}}
+{\color{red}{\times}}}
+$}"];
+14 [texlbl="\underline{14. {\LARGE \color{green} $\neg p$}}"];
+15 [texlbl="\underline{15. {\LARGE \color{green} $\neg r$}}"];
+16 [texlbl="\underline{16. {\LARGE \color{green} $p \wedge q$}}"];
+17 [texlbl="\underline{17. {\LARGE \color{green} $\neg p \wedge r$}}"];
+18 [texlbl="18. {\LARGE
+$\displaystyle{\frac{\color{green}{p}}
+{\color{red}{\times}}}$}"];
+19 [texlbl="\underline{19. {\LARGE \color{green} $\neg p$}}"];
+20 [texlbl="20. {\LARGE$\displaystyle{\frac{\color{green}{r}}{\color{red}{\times}}}$}"];
+subgraph dir
+{
+0 -> 1;
+1 -> 2;
+2 -> 3;
+3 -> 4;
+3 -> 5;
+4 -> 6;
+6 -> 7;
+7 -> 8;
+8 -> 9;
+8 -> 10;
+10 -> 13;
+9 -> 11;
+11 -> 12;
+5 -> 14;
+14 -> 15;
+15 -> 16;
+15 -> 17;
+16 -> 18;
+17 -> 19;
+19 -> 20;
+}
+subgraph ancestor
+{
+edge [dir=back, color=blue, style=dashed]
+1->3;
+2->9;
+2->10;
+2->16;
+2->17->20;
+4->7;
+6->8;
+5->15;
+}
+subgraph undir
+{
+edge [dir=none, color=red]
+7 -> 12;
+8 -> 13;
+14 -> 18;
+15 -> 20;
+}
+}
